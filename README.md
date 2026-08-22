@@ -7,6 +7,27 @@
 A terminal-first (later voice-first) assistant that lives on your Mac, operates your system and browser through a safe permission layer, reads your messages/mail/calendar, remembers you across sessions, has a consistent personality, and improves over time mostly through **memory**, and only much later through careful, cloud-based, evaluated fine-tuning. the intelligence isn't a giant model, it's **integrations + memory + proactivity**.
 
 
+## 1. Permanent principles (these never bend, in any phase)
+
+1. **Tools, not raw shell.** The model never gets arbitrary shell access. It calls typed functions you wrote. Every capability is a named tool with a schema.
+
+2. **The permission fence.** Every tool has a risk tier: **auto** (safe, reversible, read-only), **confirm** (shows the exact action, waits for y/n), **blocked** (never automated). Enforced in code, not by prompt.
+
+3. **Reversibility over deletion.** Nothing destructive is ever truly destructive on an automated path. "Delete email" means *move to Trash / label*, never permanent-delete. Anything irreversible is confirm-tier at minimum.
+
+4. **Full audit log.** Every action, every routing decision, every rule firing is appended to a log with a timestamp and reason. This is how you debug and how you sleep.
+
+5. **The privacy wall (hybrid).** You define what never leaves the machine. The router *physically cannot* send that data to the cloud. Enforced in code, with a test that fails if private data can reach a cloud endpoint.
+
+6. **Small models misfire — leash accordingly.** A 7-8B local model will occasionally call the wrong tool or wrong argument. Principles 2–4 are therefore load-bearing, not optional hygiene.
+
+7. **Propose, don't self-ship.** When pantokrator modifies its own code or swaps its own model, it *proposes* (a pull request, a suggestion) — evals judge, and a human approves. It can never rewrite its own safety rails or evals.
+
+8. **Memory first, fine-tuning last.** "It learns about me" is a memory/retrieval problem. Fine-tuning is a late, cloud-only, style-only, eval-gated specialist tool — possibly never needed.
+
+If a feature ever requires breaking one of these, the feature is wrong, not the principle.
+
+
 # Contribution Guidelines
 
 ## Rules for Contributing
