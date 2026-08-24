@@ -1,6 +1,6 @@
 # Project Pantokrator 
 
-**A local-first, hybrid, personal AI assistant for one 16 GB Apple Silicon Mac.**
+**A local-first, hybrid, Reasrch based AI assistant for one 16 GB Apple Silicon Mac.**
 
 ## 0. What we are building
 
