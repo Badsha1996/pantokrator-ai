@@ -1,0 +1,107 @@
+Screen {
+    background: $background;
+    layout: vertical;
+}
+
+#banner {
+    height: 1;
+    padding: 0 2;
+    background: $panel;
+}
+
+#wordmark {
+    width: auto;
+}
+
+#status {
+    width: 1fr;
+    text-align: right;
+    color: $text-muted;
+}
+
+#transcript {
+    height: 1fr;
+    padding: 1 2;
+    scrollbar-size-vertical: 1;
+    scrollbar-background: $background;
+    scrollbar-color: $panel;
+    scrollbar-color-hover: $primary;
+}
+
+.hero {
+    border: round $primary 40%;
+    padding: 1 2;
+    margin-bottom: 1;
+}
+
+UserTurn {
+    margin-top: 1;
+    color: $foreground;
+}
+
+SystemTurn {
+    margin: 1 0 0 2;
+    padding: 0 1;
+    border-left: outer $accent 60%;
+    color: $text-muted;
+}
+
+AgentTurn {
+    height: auto;
+    margin: 0 0 1 2;
+}
+
+AgentTurn .speaker {
+    margin-bottom: 0;
+}
+
+AgentTurn Markdown {
+    height: auto;
+    margin: 0;
+    background: transparent;
+}
+
+AgentTurn Markdown > * {
+    margin: 0 0 1 0;
+}
+
+AgentTurn Markdown > *:last-of-type {
+    margin: 0;
+}
+
+AgentTurn .cursor {
+    height: auto;
+    color: $secondary;
+}
+
+AgentTurn .cursor.note {
+    color: $text-muted;
+}
+
+#prompt-bar {
+    height: 3;
+    padding: 0 1;
+    background: $surface;
+    border-top: solid $panel;
+}
+
+#prompt {
+    border: none;
+    height: 3;
+    padding: 1 1;
+    background: transparent;
+}
+
+#prompt:focus {
+    border: none;
+    background: transparent;
+}
+
+Footer {
+    background: $panel;
+}
+
+#caret {
+    width: 3;
+    padding: 1 0 0 1;
+}

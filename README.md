@@ -7,6 +7,23 @@
 A terminal-first (later voice-first) assistant that lives on your Mac, operates your system and browser through a safe permission layer, reads your messages/mail/calendar, remembers you across sessions, has a consistent personality, and improves over time mostly through **memory**, and only much later through careful, cloud-based, evaluated fine-tuning. the intelligence isn't a giant model, it's **integrations + memory + proactivity**.
 
 
+## Running it (Phase 0)
+
+```sh
+uv sync
+uv run pantokrator-ai      # or: uv run python -m pantokrator_ai
+```
+
+A full-screen terminal: type at the `❯` prompt, your line is echoed into the
+scrollback, and the reply streams in below it as markdown.
+
+| | |
+| --- | --- |
+| `/help` `/clear` `/history` `/quit` | slash commands |
+| `↑` `↓` | recall previous prompts |
+| `esc` | interrupt a reply mid-stream |
+| `ctrl+l` / `ctrl+q` | clear / quit |
+
 ## 1. Permanent principles (these never bend, in any phase)
 
 1. **Tools, not raw shell.** The model never gets arbitrary shell access. It calls typed functions you wrote. Every capability is a named tool with a schema.
