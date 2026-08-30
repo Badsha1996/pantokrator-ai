@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import asyncio
-import re
 from collections.abc import AsyncIterator
 from typing import Protocol, runtime_checkable
 
-GREETINGS = {"hi", "hey", "hello", "yo", "pantokrator", "sup"}
+from .helpers.engine import _fragments, _reply_to
 
-
+# Interfaces which should have the original shape
+# btw i was thinking of separting this as we can have interfaces/
+# BUT THIS IS A NOTE FOR Future Badsha 
 @runtime_checkable
 class Engine(Protocol):
     name: str
@@ -22,14 +23,3 @@ class EchoEngine:
         for fragment in _fragments(_reply_to(prompt)):
             await asyncio.sleep(self.delay)
             yield fragment
-
-
-def _reply_to(prompt: str) -> str:
-    words = re.findall(r"[a-z']+", prompt.lower())
-
-    if words and words[0] in GREETINGS and len(words) <= 3: return "Hello sir."
-
-    return f'Heard you: *"{prompt.strip()}"*\n\n'
-
-
-def _fragments(text: str) -> list[str]: return re.findall(r"\S+\s*", text) or [text]

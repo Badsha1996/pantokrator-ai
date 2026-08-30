@@ -29,13 +29,12 @@ class PromptInput(Input):
         self._cursor_in_history = 0
 
     def remember(self, text: str) -> None:
-        if text and (not self.history or self.history[-1] != text):
-            self.history.append(text)
+        if text and (not self.history or self.history[-1] != text): self.history.append(text)
         self._cursor_in_history = len(self.history)
 
     def action_recall(self, offset: int) -> None:
-        if not self.history:
-            return
+        if not self.history: return
+
         position = self._cursor_in_history + offset
         self._cursor_in_history = max(0, min(position, len(self.history)))
         if self._cursor_in_history == len(self.history):
@@ -80,8 +79,7 @@ class PantokratorApp(App):
         self.watch_busy(False)
 
     @property
-    def transcript(self) -> VerticalScroll:
-        return self.query_one("#transcript", VerticalScroll)
+    def transcript(self) -> VerticalScroll: return self.query_one("#transcript", VerticalScroll)
 
     def watch_busy(self, busy: bool) -> None:
         dot = "[$warning]●[/] working" if busy else "[$success]●[/] idle"
@@ -151,12 +149,8 @@ class PantokratorApp(App):
             self.transcript.scroll_end(animate=False)
 
     def action_interrupt(self) -> None:
-        if self.busy:
-            self.workers.cancel_group(self, "reply")
+        if self.busy: self.workers.cancel_group(self, "reply")
 
     async def action_clear(self) -> None:
         await self.transcript.remove_children()
         await self.transcript.mount(Static(BANNER, classes="hero"))
-
-
-
